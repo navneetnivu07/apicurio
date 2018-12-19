@@ -1,18 +1,18 @@
 ---
 openapi: 3.0.2
 info:
-  version: 1.0.0
   title: wavey
   description: A sample API that uses a petstore as an example to demonstrate features
     in the OpenAPI 3.0 specification
   termsOfService: http://swagger.io/terms/
   contact:
     name: Swagger API Team
-    email: apiteam@swagger.io
     url: http://swagger.io
+    email: apiteam@swagger.io
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
 servers:
 - url: http://petstore.swagger.io/api
 paths:
@@ -39,8 +39,8 @@ paths:
         description: maximum number of results to return
         required: false
         schema:
-          type: integer
           format: int32
+          type: integer
       responses:
         200:
           description: pet response
@@ -61,11 +61,11 @@ paths:
       operationId: addPet
       requestBody:
         description: Pet to add to the store
-        required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/NewPet'
+        required: true
       responses:
         200:
           description: pet response
@@ -90,8 +90,8 @@ paths:
         description: ID of pet to fetch
         required: true
         schema:
-          type: integer
           format: int64
+          type: integer
       responses:
         200:
           description: pet response
@@ -114,8 +114,8 @@ paths:
         description: ID of pet to delete
         required: true
         schema:
-          type: integer
           format: int64
+          type: integer
       responses:
         204:
           description: pet deleted
@@ -128,14 +128,30 @@ paths:
 components:
   schemas:
     Pet:
+      required:
+      - id
+      - name
       allOf:
       - $ref: '#/components/schemas/NewPet'
       - required:
         - id
         properties:
           id:
-            type: integer
             format: int64
+            type: integer
+      properties:
+        tag:
+          type: string
+        id:
+          type: integer
+        name:
+          type: string
+      example: |-
+        {
+            "tag": "black",
+            "id": 44,
+            "name": "shadow"
+        }
     NewPet:
       required:
       - name
@@ -144,13 +160,23 @@ components:
           type: string
         tag:
           type: string
+      example: |-
+        {
+            "name": "jim",
+            "tag": "brown"
+        }
     Error:
       required:
       - code
       - message
       properties:
         code:
-          type: integer
           format: int32
+          type: integer
         message:
           type: string
+      example: |-
+        {
+            "code": 16,
+            "message": "error 16"
+        }
