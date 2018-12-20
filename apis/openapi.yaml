@@ -2,8 +2,8 @@
 openapi: 3.0.2
 info:
   title: wavey
-  description: A sample API that uses a petstore as an example to demonstrate features
-    in the OpenAPI 3.0 specification
+  description: version=1.0 - A sample API that uses a petstore as an example to demonstrate
+    features in the OpenAPI 3.0 specification
   termsOfService: http://swagger.io/terms/
   contact:
     name: Swagger API Team
